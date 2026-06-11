@@ -52,6 +52,20 @@ export interface CaseCustomer {
   tier: string | null;
 }
 
+/** The signed-in customer (same shape as CaseCustomer). */
+export type Customer = CaseCustomer;
+
+export interface OrderListItem {
+  id: string;
+  product_name: string;
+  amount: number;
+  currency: string;
+  status: string;
+  delivered_at: string | null;
+  refunded: boolean;
+  refund_ticket: string | null;
+}
+
 export interface OrderDetail {
   id: string;
   product_name: string;

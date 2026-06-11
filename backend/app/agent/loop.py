@@ -109,7 +109,7 @@ async def run_agent(
     config = config or load_policy_config()
     max_steps = max_steps if max_steps is not None else get_settings().max_steps
 
-    messages: list[Message] = [system_message(build_system_prompt(config))]
+    messages: list[Message] = [system_message(build_system_prompt(config, ctx.customer))]
     messages += history or []
     messages.append(user_message(user_text))
 

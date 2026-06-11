@@ -397,7 +397,7 @@
 }
 
 /* recording — the black wave strip */
-.strip {
+.compose .strip {
   flex: 1;
   display: flex;
   align-items: center;

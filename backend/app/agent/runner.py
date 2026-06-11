@@ -8,7 +8,7 @@ leaks into the route.
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.agent.loop import StepEvent, run_agent
@@ -100,8 +100,18 @@ async def run_chat_turn(
     llm: LLMClient,
     bus: EventBus,
     channel: ConversationChannel = ConversationChannel.TEXT,
+    customer_email: str | None = None,
 ) -> ChatTurnResult:
     conversation = await _load_or_create_conversation(session, conversation_id, channel)
+    # Signed-in customer: pre-resolve identity so the agent skips asking for an email.
+    if conversation.customer_id is None and customer_email:
+        signed_in = (
+            await session.execute(
+                select(Customer).where(func.lower(Customer.email) == customer_email.strip().lower())
+            )
+        ).scalar_one_or_none()
+        if signed_in is not None:
+            conversation.customer_id = signed_in.id
     history = await _load_history(session, conversation.id)
     session.add(Message(conversation_id=conversation.id, role=MessageRole.USER, content=message))
 

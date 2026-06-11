@@ -25,6 +25,7 @@ async def chat(
         conversation_id=request.conversation_id,
         llm=llm,
         bus=event_bus,
+        customer_email=request.customer_email,
     )
     order = (
         OrderBrief(

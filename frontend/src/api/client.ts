@@ -1,4 +1,4 @@
-import type { CaseDetail, CaseSummary, ChatResponse } from "@/types";
+import type { CaseDetail, CaseSummary, ChatResponse, Customer, OrderListItem } from "@/types";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
@@ -13,11 +13,30 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export function postChat(message: string, conversationId: number | null): Promise<ChatResponse> {
+export function postChat(
+  message: string,
+  conversationId: number | null,
+  customerEmail?: string | null,
+): Promise<ChatResponse> {
   return request<ChatResponse>("/chat", {
     method: "POST",
-    body: JSON.stringify({ message, conversation_id: conversationId }),
+    body: JSON.stringify({
+      message,
+      conversation_id: conversationId,
+      customer_email: customerEmail ?? null,
+    }),
   });
+}
+
+export function login(email: string): Promise<Customer> {
+  return request<Customer>("/auth/login", {
+    method: "POST",
+    body: JSON.stringify({ email }),
+  });
+}
+
+export function getOrders(customerId: string): Promise<OrderListItem[]> {
+  return request<OrderListItem[]>(`/customers/${customerId}/orders`);
 }
 
 export function getCases(): Promise<CaseSummary[]> {

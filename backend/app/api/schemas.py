@@ -9,6 +9,11 @@ from pydantic import BaseModel, Field
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=4000)
     conversation_id: int | None = None
+    customer_email: str | None = None  # set when a signed-in customer is chatting
+
+
+class LoginRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=200)
 
 
 class OrderBrief(BaseModel):
@@ -88,3 +93,14 @@ class CaseDetail(BaseModel):
     order: OrderDetail | None = None
     escalation: CaseEscalation | None = None
     steps: list[StepOut]
+
+
+class OrderListItem(BaseModel):
+    id: str
+    product_name: str
+    amount: float
+    currency: str
+    status: str
+    delivered_at: datetime | None = None
+    refunded: bool
+    refund_ticket: str | None = None  # open escalation ref, if a refund is in review

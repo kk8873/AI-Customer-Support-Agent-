@@ -1,0 +1,279 @@
+/* Login — mock sign-in / customer selector. Scoped under .login. */
+
+.login {
+  min-height: 100vh;
+  background: var(--bg-page);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+
+.login nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+}
+.login .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.login .mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+}
+.login .mark svg {
+  width: 16px;
+  height: 16px;
+  stroke: #fff;
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.login .brand b {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.login .navnote {
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+.login .wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+.login .card {
+  width: 400px;
+  max-width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04), 0 12px 32px rgba(20, 22, 28, 0.06);
+  padding: 30px 28px;
+}
+.login .logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+}
+.login .logo svg {
+  width: 21px;
+  height: 21px;
+  stroke: #fff;
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.login .h {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.login .sub {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 6px 0 22px;
+}
+.login label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-bottom: 7px;
+}
+.login .input {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  padding: 11px 14px;
+  background: var(--bg-card);
+}
+.login .input:focus-within {
+  border-color: var(--ink);
+}
+.login .input svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--ink-3);
+  stroke-width: 1.9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.login .input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: var(--font);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.login .input input::placeholder {
+  color: var(--ink-3);
+}
+.login .err {
+  margin-top: 9px;
+  font-size: 12px;
+  color: var(--red);
+}
+.login .cta {
+  margin-top: 14px;
+  width: 100%;
+  border: none;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 550;
+  padding: 12px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+}
+.login .cta:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.login .mocknote {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--ink-2);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 9px 12px;
+}
+.login .mocknote svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--ink-3);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.login .demo {
+  width: 400px;
+  max-width: 100%;
+  margin-top: 18px;
+}
+.login .demo-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.login .demo-label::before,
+.login .demo-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line-2);
+}
+.login .persona {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 10px 13px;
+  margin-bottom: 7px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+.login .persona:hover {
+  border-color: var(--line-2);
+}
+.login .av {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+.login .persona b {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.login .persona small {
+  font-size: 11px;
+  color: var(--ink-2);
+}
+.login .sp {
+  flex: 1;
+}
+.login .scen {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  font-weight: 650;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.login .sc-esc {
+  color: var(--amber);
+  background: var(--amber-bg);
+  border-color: var(--amber-line);
+}
+.login .sc-ok {
+  color: var(--green);
+  background: var(--green-bg);
+  border-color: var(--green-line);
+}
+.login .sc-deny {
+  color: var(--red);
+  background: var(--red-bg);
+  border-color: var(--red-line);
+}
+.login .verify-note {
+  margin-top: 20px;
+  font-size: 11.5px;
+  color: var(--ink-3);
+  text-align: center;
+  max-width: 400px;
+}

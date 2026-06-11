@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 
-from app.api.routes import admin, chat, voice
+from app.api.routes import admin, auth, chat, orders, voice
 from app.db.database import SessionFactory
 
 app = FastAPI(title="AI Refund Agent")
@@ -19,6 +19,8 @@ app.add_middleware(
 app.include_router(chat.router)
 app.include_router(admin.router)
 app.include_router(voice.router)
+app.include_router(auth.router)
+app.include_router(orders.router)
 
 
 @app.get("/health")

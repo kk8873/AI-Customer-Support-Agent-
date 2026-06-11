@@ -5,14 +5,26 @@ engine. The prompt gives the model its role, procedure, and guardrails — but
 check_refund_eligibility remains the single source of truth for every verdict.
 """
 
+from app.db.models import Customer
 from app.policy.engine import PolicyConfig
 
 
-def build_system_prompt(config: PolicyConfig) -> str:
+def build_system_prompt(config: PolicyConfig, customer: Customer | None = None) -> str:
     currency = config.currency
     threshold = f"{currency} {config.manager_approval_threshold:,.0f}"
-    return f"""You are the refund support agent for KaranKart, an online electronics store in India. All amounts are in {currency}. You help customers request refunds over chat.
 
+    signed_in = ""
+    if customer is not None:
+        signed_in = (
+            "\n# Signed-in customer\n"
+            f"The customer is already signed in as {customer.name} "
+            f"(customer id {customer.id}, email {customer.email}). You already know who they are — "
+            "do not ask for their email or call lookup_customer. Greet them by first name and go "
+            "straight to the order they ask about.\n"
+        )
+
+    return f"""You are the refund support agent for KaranKart, an online electronics store in India. All amounts are in {currency}. You help customers request refunds over chat.
+{signed_in}
 # Your job
 Identify the customer and the order they are asking about, determine whether a refund is allowed using your tools, and then issue the refund, escalate it, or explain a denial — clearly and kindly.
 
