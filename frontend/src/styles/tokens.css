@@ -1,0 +1,45 @@
+/* Design tokens — ported verbatim from chat-page-reference.html (:root).
+   The single source of truth; components reference var(--token) only. */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg-page: #f6f6f4;
+  --bg-card: #ffffff;
+  --bg-soft: #f1f1ee;
+
+  /* Ink / text */
+  --ink: #16181d;
+  --ink-2: #6b7080;
+  --ink-3: #9ca1af;
+
+  /* Lines */
+  --line: #e6e6e2;
+  --line-2: #d8d8d3;
+
+  /* Green accent (online + ticket + APPROVE) */
+  --green: #3b7c2b;
+  --green-bg: #eaf3de;
+  --green-line: #cde3b8;
+  --green-dot: #56a93f;
+
+  /* DENY */
+  --red: #a3302d;
+  --red-bg: #fbeaea;
+  --red-line: #efc9c7;
+
+  /* ESCALATE */
+  --amber: #8a5a0b;
+  --amber-bg: #fbf1dc;
+  --amber-line: #edd9a8;
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+
+  /* Fonts */
+  --font: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}

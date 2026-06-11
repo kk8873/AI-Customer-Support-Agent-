@@ -1,0 +1,38 @@
+[project]
+name = "ai-refund-agent"
+version = "0.1.0"
+description = "Observable AI agent that decides e-commerce refunds (approve/deny/escalate) against a strict policy."
+requires-python = ">=3.12"
+
+dependencies = [
+    # ── Web framework + server ────────────────────────────────────────
+    "fastapi>=0.115",          # async API + built-in SSE (StreamingResponse)
+    "uvicorn[standard]>=0.30",  # ASGI server that runs FastAPI
+    # ── Database (async PostgreSQL) ───────────────────────────────────
+    "sqlalchemy[asyncio]>=2.0", # ORM, async mode (models for the 7 tables)
+    "asyncpg>=0.29",            # async Postgres driver (non-blocking DB I/O)
+    # ── Config + validation ───────────────────────────────────────────
+    "pydantic>=2.7",            # typed request/response + tool result schemas
+    "pydantic-settings>=2.3",   # load settings from .env (DATABASE_URL, keys)
+    "python-dotenv>=1.0",       # .env file support for pydantic-settings
+    # ── LLM + outbound HTTP ───────────────────────────────────────────
+    "openai>=1.40",             # OpenAI adapter (gpt-4.1-mini, function calling)
+    "httpx>=0.27",              # async HTTP client for any vendor calls
+    "pipecat-ai[deepgram,elevenlabs,silero,webrtc]>=1.3.0",
+]
+
+[dependency-groups]
+# Dev-only — not installed in a production build. Used for the pure-logic tests.
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",     # run async tests (agent loop, DB)
+]
+
+[tool.uv]
+# This is an application, not a library — don't try to build/install our own
+# code as a package. uv just manages the .venv and the dependencies above.
+package = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"           # treat async test functions as asyncio tests
+pythonpath = ["."]              # make the app package importable from tests

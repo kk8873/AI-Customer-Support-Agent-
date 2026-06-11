@@ -1,0 +1,43 @@
+# ── Internal docs for Claude (NOT part of the deliverable) ────────────
+/docs/
+/CLAUDE.md
+/.claude/
+
+# ── Secrets (NEVER commit — repo is public) ───────────────────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# ── Python ────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# ── Database (local SQLite — seeded, not committed) ──────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Node / frontend ───────────────────────────────────────────────────
+node_modules/
+.vite/
+dist/
+*.local
+
+# ── Editor / OS ───────────────────────────────────────────────────────
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# TS build cache
+*.tsbuildinfo

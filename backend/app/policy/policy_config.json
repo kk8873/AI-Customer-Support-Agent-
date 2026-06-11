@@ -1,0 +1,6 @@
+{
+  "return_window_days": 30,
+  "vip_return_window_days": 45,
+  "manager_approval_threshold": 50000,
+  "currency": "INR"
+}
