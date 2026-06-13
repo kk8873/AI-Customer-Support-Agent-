@@ -56,7 +56,7 @@ export function LoginPage() {
     setError(null);
     try {
       signIn(await login(target));
-      navigate("/home");
+      navigate("/orders");
     } catch (err) {
       const notFound = err instanceof Error && err.message.includes("404");
       setError(
